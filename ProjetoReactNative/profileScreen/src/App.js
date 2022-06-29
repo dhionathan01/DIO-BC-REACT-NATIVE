@@ -1,12 +1,22 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, sa, SafeAreaView, StatusBar, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Pressable, Linking } from 'react-native';
 
 const corDeFundo = '#010409';
 const colorFontGithub = '#C9D1D9';
 const colorDarkkFontGithub = '#4F565E';
+const urlToMyGithub = 'https://github.com/dhionathan01';
 const imagemProfileGithub = 'https://scontent-gig2-1.xx.fbcdn.net/v/t39.30808-6/290209625_4720268214746130_3519532189470720939_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEt5PqjwMrUndr9cKunnBObOo0KoxCud5k6jQqjEK53meDe5agZjpSi8nAxIbO3ZLb8dVVqxNUwMvzqGl2SZR0E&_nc_ohc=5YRGcO70-gIAX-0FItB&_nc_ht=scontent-gig2-1.xx&oh=00_AT-lJ9H-AhxPLzAI2_T5KviluHd_V72_Yq-eT00KgRY48Q&oe=62C14B33';
 
 const App = () => {
+    const handlePressGoToGithub = async () => {
+        console.log('Verificando Link');
+        const res = await Linking.canOpenURL(urlToMyGithub);
+        if (res) {
+            console.log('LinkParovado');
+            console.log('Abrindo Link');
+            await Linking.openURL(urlToMyGithub);  
+        };
+    };
     return (
         <SafeAreaView style={style.container}>
             <StatusBar backgroundColor={corDeFundo} barStyle='light-content' />
@@ -25,7 +35,7 @@ const App = () => {
                     Estudande de Desenvolvimento. |
                     Graduando em Análise e Desenvolvimento de Sistemas.
                 </Text>
-            <Pressable onPress={()=>console.log("Github")}>
+            <Pressable onPress={handlePressGoToGithub}>
             <View style={style.button}>
                 <Text style={[style.defaultText, style.textbutton]}> Open in Github </Text>
             </View>
